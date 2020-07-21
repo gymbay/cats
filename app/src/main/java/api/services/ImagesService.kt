@@ -1,16 +1,16 @@
 package api.services
 
 import api.Provider
-import api.models.images.CatImage
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.QueryMap
+import api.models.images.CatImageResponse
+import io.reactivex.rxjava3.core.Observable
+import retrofit2.http.*
+import javax.inject.Inject
 
-class ImagesService {
+class ImagesService @Inject constructor() {
 
     interface Images {
         @GET("images/search")
-        fun getImages(@QueryMap parameters: Map<String, String> = emptyMap()): Call<List<CatImage>>
+        fun getImages(@QueryMap parameters: Map<String, String> = emptyMap()): Observable<List<CatImageResponse>>
     }
 
     fun createService() : Images {
